@@ -1,0 +1,13 @@
+# Milestone 1: data audit
+pandas>=2.2
+numpy>=1.26
+matplotlib>=3.8
+notebook>=7.0
+
+# Added in later milestones (uncomment when needed)
+# geopandas>=1.0        # Milestone 2: GIS
+# shapely>=2.0          # Milestone 2: GIS
+# scikit-learn>=1.5     # Milestone 3: forecasting
+# scipy>=1.13           # Milestone 4: optimization
+# plotly>=5.24          # Milestone 5: app charts
+# streamlit>=1.38       # Milestone 5: app

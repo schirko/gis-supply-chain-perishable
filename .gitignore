@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.idea/
+data/raw/*
+data/processed/*
+!data/raw/README.md
+!data/processed/.gitkeep
