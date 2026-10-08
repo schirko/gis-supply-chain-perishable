@@ -10,11 +10,16 @@ glossary) is kept in the Claude doc "Perishable Inventory Optimizer: Project
 Plan":
 https://claude.ai/code/artifact/15319a10-a679-4c1f-b9b9-c40583dd09da
 
-## Data
+## Data sources
 
-Kaggle "Store Sales - Time Series Forecasting" (Corporacion Favorita, an
-Ecuadorian grocery chain). See `data/raw/README.md` for download steps.
-Raw data is not committed to the repository.
+| Source | Where it lives | Role |
+| --- | --- | --- |
+| Kaggle "Store Sales - Time Series Forecasting" (Corporacion Favorita, an Ecuadorian grocery chain) | `data/raw/store-sales-time-series-forecasting/` | The project dataset: daily sales by store and product family, store cities, holidays, oil prices and transactions |
+| `perishable food supply chain.xlsx` | `data/raw/` (local only) | Not a dataset. A table of model parameters for a multi-stage supply chain optimization. Its source and the meaning of its symbols are still to be confirmed, and it is not used yet |
+
+Raw files are not committed to the repository. See `data/raw/README.md` for
+the Kaggle download steps. The spreadsheet stays local until its source is
+confirmed.
 
 ## Folder layout
 
