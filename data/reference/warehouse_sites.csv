@@ -1,0 +1,5 @@
+warehouse,province,stores_in_city,latitude,longitude,basis
+Quito,Pichincha,18,-0.2201641,-78.5123274,assumed site: large city or road hub; not the chain's real warehouse
+Guayaquil,Guayas,8,-2.1900572,-79.8868669,assumed site: large city or road hub; not the chain's real warehouse
+Cuenca,Azuay,3,-2.8974072,-79.0041726,assumed site: large city or road hub; not the chain's real warehouse
+Santo Domingo,Santo Domingo de los Tsáchilas,3,-0.2475027,-79.1713171,assumed site: large city or road hub; not the chain's real warehouse
