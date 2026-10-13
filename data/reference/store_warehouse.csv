@@ -1,0 +1,55 @@
+store_nbr,city,state,type,cluster,warehouse,km_to_warehouse,runner_up,margin_km
+1,Quito,Pichincha,D,13,Quito,0.0,Santo Domingo,73.4
+2,Quito,Pichincha,D,13,Quito,0.0,Santo Domingo,73.4
+3,Quito,Pichincha,D,8,Quito,0.0,Santo Domingo,73.4
+4,Quito,Pichincha,D,9,Quito,0.0,Santo Domingo,73.4
+5,Santo Domingo,Santo Domingo de los Tsachilas,D,4,Santo Domingo,0.0,Quito,73.4
+6,Quito,Pichincha,D,13,Quito,0.0,Santo Domingo,73.4
+7,Quito,Pichincha,D,8,Quito,0.0,Santo Domingo,73.4
+8,Quito,Pichincha,D,8,Quito,0.0,Santo Domingo,73.4
+9,Quito,Pichincha,B,6,Quito,0.0,Santo Domingo,73.4
+10,Quito,Pichincha,C,15,Quito,0.0,Santo Domingo,73.4
+11,Cayambe,Pichincha,B,6,Quito,57.0,Santo Domingo,71.0
+12,Latacunga,Cotopaxi,C,15,Quito,79.8,Santo Domingo,18.2
+13,Latacunga,Cotopaxi,C,15,Quito,79.8,Santo Domingo,18.2
+14,Riobamba,Chimborazo,C,7,Cuenca,140.9,Guayaquil,7.1
+15,Ibarra,Imbabura,C,15,Quito,76.9,Santo Domingo,57.6
+16,Santo Domingo,Santo Domingo de los Tsachilas,C,3,Santo Domingo,0.0,Quito,73.4
+17,Quito,Pichincha,C,12,Quito,0.0,Santo Domingo,73.4
+18,Quito,Pichincha,B,16,Quito,0.0,Santo Domingo,73.4
+19,Guaranda,Bolivar,C,15,Guayaquil,124.1,Santo Domingo,8.4
+20,Quito,Pichincha,B,6,Quito,0.0,Santo Domingo,73.4
+21,Santo Domingo,Santo Domingo de los Tsachilas,B,6,Santo Domingo,0.0,Quito,73.4
+22,Puyo,Pastaza,C,7,Quito,151.3,Santo Domingo,38.0
+23,Ambato,Tungurahua,D,9,Quito,113.8,Santo Domingo,11.7
+24,Guayaquil,Guayas,D,1,Guayaquil,0.0,Cuenca,125.5
+25,Salinas,Santa Elena,D,1,Guayaquil,115.6,Cuenca,109.2
+26,Guayaquil,Guayas,D,10,Guayaquil,0.0,Cuenca,125.5
+27,Daule,Guayas,D,1,Guayaquil,30.0,Cuenca,118.0
+28,Guayaquil,Guayas,E,10,Guayaquil,0.0,Cuenca,125.5
+29,Guayaquil,Guayas,E,10,Guayaquil,0.0,Cuenca,125.5
+30,Guayaquil,Guayas,C,3,Guayaquil,0.0,Cuenca,125.5
+31,Babahoyo,Los Rios,B,10,Guayaquil,54.7,Cuenca,71.3
+32,Guayaquil,Guayas,C,3,Guayaquil,0.0,Cuenca,125.5
+33,Quevedo,Los Rios,C,3,Santo Domingo,96.8,Guayaquil,35.4
+34,Guayaquil,Guayas,B,6,Guayaquil,0.0,Cuenca,125.5
+35,Playas,Guayas,C,3,Guayaquil,74.7,Cuenca,86.9
+36,Libertad,Guayas,E,10,Guayaquil,113.7,Cuenca,110.9
+37,Cuenca,Azuay,D,2,Cuenca,0.0,Guayaquil,125.5
+38,Loja,Loja,D,4,Cuenca,123.6,Guayaquil,90.2
+39,Cuenca,Azuay,B,6,Cuenca,0.0,Guayaquil,125.5
+40,Machala,El Oro,C,3,Cuenca,115.0,Guayaquil,9.6
+41,Machala,El Oro,D,4,Cuenca,115.0,Guayaquil,9.6
+42,Cuenca,Azuay,D,2,Cuenca,0.0,Guayaquil,125.5
+43,Esmeraldas,Esmeraldas,E,10,Santo Domingo,144.6,Quito,38.0
+44,Quito,Pichincha,A,5,Quito,0.0,Santo Domingo,73.4
+45,Quito,Pichincha,A,11,Quito,0.0,Santo Domingo,73.4
+46,Quito,Pichincha,A,14,Quito,0.0,Santo Domingo,73.4
+47,Quito,Pichincha,A,14,Quito,0.0,Santo Domingo,73.4
+48,Quito,Pichincha,A,14,Quito,0.0,Santo Domingo,73.4
+49,Quito,Pichincha,A,11,Quito,0.0,Santo Domingo,73.4
+50,Ambato,Tungurahua,A,14,Quito,113.8,Santo Domingo,11.7
+51,Guayaquil,Guayas,A,17,Guayaquil,0.0,Cuenca,125.5
+52,Manta,Manabi,A,11,Guayaquil,164.6,Santo Domingo,38.0
+53,Manta,Manabi,D,13,Guayaquil,164.6,Santo Domingo,38.0
+54,El Carmen,Manabi,C,3,Santo Domingo,51.7,Quito,69.9

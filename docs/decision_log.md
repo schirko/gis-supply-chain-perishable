@@ -33,3 +33,11 @@ What was chosen, what was rejected, and why. Newest entries at the bottom. Each 
 - **Chosen:** B. It is the shortest on both measures and splits the stores more evenly (Quito 25, Guayaquil 16, Cuenca 7, Santo Domingo 6).
 - **Limits:** the sites are assumed, not the chain's real warehouses. Candidates came from judgment, so a better setup may exist. Distance is straight-line, not by road. Every store counts equally.
 - **Evidence:** `notebooks/02_gis_foundation.ipynb` Step 5; `data/reference/warehouse_sites.csv`.
+
+## 7. Store assignment: nearest warehouse by straight-line distance
+- **Method:** measure the distance from each city to each of the four warehouses (UTM metres), assign each store to the nearest, and keep the runner-up and the margin.
+- **Result:** Quito 25 stores (average 26.9 km), Guayaquil 16 (52.6 km), Cuenca 7 (70.6 km), Santo Domingo 6 (48.8 km). The longest distance is 164.6 km.
+- **Close calls (margin under 15 km):** Riobamba 7.1 km, Guaranda 8.4, Machala 9.6, Ambato 11.7; 6 stores in all.
+- **Rejected for now:** road or drive-time distance (needs a routing service; a stretch goal that would settle the close calls) and weighting stores by sales (comes with the demand forecast).
+- **Limits:** straight lines cross the Andes, so a few cities could belong to another warehouse by road.
+- **Evidence:** `notebooks/02_gis_foundation.ipynb` Step 6; `data/reference/store_warehouse.csv`.
