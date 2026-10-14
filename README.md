@@ -40,7 +40,7 @@ docs/        project documentation
 
 1. Data audit and dataset decision (complete)
 2. GIS foundation: warehouse service areas (complete)
-3. Demand aggregation and forecast
+3. Demand aggregation and forecast (in progress)
 4. Inventory optimization
 5. Streamlit app
 6. Deploy and write-up
@@ -50,7 +50,8 @@ docs/        project documentation
 - **Data:** 54 stores in 22 cities across Ecuador's provinces. 33 product families, of which nine are treated as perishable. Sales are per family, not per item, and sales are not true demand.
 - **Geography:** every city point was checked against province boundaries. Two wrong points were found and fixed (Libertad, Ibarra).
 - **Regions:** four assumed warehouses (Quito, Guayaquil, Cuenca, Santo Domingo) serve 25, 16, 7 and 6 stores, with the farthest store 164.6 km away. Four cities (6 stores) are close calls, since straight-line distance crosses the Andes.
-- **Next:** Milestone 3, a demand forecast per warehouse.
+- **Demand history:** nine perishable families added up by day and warehouse. Quito carries 64.5% of the units, Guayaquil 20.3%, Cuenca 9.7%, Santo Domingo 5.5%. Closed and not-yet-open store days were identified (8 stores opened late; stores close on New Year's Day). Seven families are clean; PRODUCE is unreliable before 2016 and SEAFOOD is small and noisy. Two likely entry errors were flagged.
+- **Next:** choose the single family for the first app, then hold out the last weeks as our own test set and compare a baseline forecast with a better model.
 
 ## Setup
 
