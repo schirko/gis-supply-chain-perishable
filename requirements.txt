@@ -12,6 +12,10 @@ geopandas>=1.0      # read province boundaries, spatial joins
 shapely>=2.0        # geometry used by geopandas
 
 # Added in later milestones (uncomment when needed)
-# scikit-learn>=1.5     # Milestone 3: forecasting
+scikit-learn>=1.5   # Milestone 3: forecasting
 # scipy>=1.13           # Milestone 4: optimization
 # streamlit>=1.38       # Milestone 5: app
+
+# Public project site (python -m src.build_site)
+nbconvert>=7.16      # export notebooks with saved outputs as HTML pages
+markdown>=3.6        # turn docs/*.md into web pages

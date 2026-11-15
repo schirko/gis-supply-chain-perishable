@@ -1,0 +1,146 @@
+<!doctype html>
+<!-- Template for the public front page. Edit this file, then run: python -m src.build_site
+     Placeholders look like $${name}; a literal dollar sign is written $$$$. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Perishable Inventory Optimizer</title>
+<meta name="description" content="How much bread should each regional warehouse stock? A forecast for Ecuador's Favorita grocery stores, built step by step in notebooks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f5; --surface: #ffffff; --ink: #1f1b18; --muted: #5f5852; --line: #e6e0d8;
+  --accent: #2E6A4C; --warn: #74460F; --warn-bg: #F6EAD9;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14181a; --surface: #1d2326; --ink: #eef2ef; --muted: #aab4ae; --line: #323b3e;
+    --accent: #6fc39a; --warn: #f0c58a; --warn-bg: #3a2c18;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14181a; --surface: #1d2326; --ink: #eef2ef; --muted: #aab4ae; --line: #323b3e;
+  --accent: #6fc39a; --warn: #f0c58a; --warn-bg: #3a2c18;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 Inter, system-ui, sans-serif; }
+a { color: var(--accent); }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+header { padding: 56px 0 28px; }
+.kicker { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+h1 { font-family: Fraunces, Georgia, serif; font-size: clamp(34px, 6vw, 56px); line-height: 1.08; margin: 10px 0 18px; }
+h2 { font-family: Fraunces, Georgia, serif; font-size: 28px; margin: 56px 0 12px; }
+.lede { font-size: 19px; color: var(--muted); max-width: 720px; margin: 0; }
+.status { display: inline-block; margin-top: 18px; padding: 6px 12px; border-radius: 8px; background: var(--warn-bg); color: var(--warn); font-size: 14.5px; font-weight: 500; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.btn { display: inline-block; padding: 9px 16px; border-radius: 999px; border: 1px solid var(--line);
+       background: var(--surface); color: var(--ink); text-decoration: none; font-size: 15px; font-weight: 500; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 32px 0 8px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 16px; }
+.stat .v { font-family: Fraunces, Georgia, serif; font-size: 40px; font-weight: 700; line-height: 1; color: var(--accent); }
+.stat .l { color: var(--muted); font-size: 14.5px; margin-top: 8px; line-height: 1.4; }
+figure { margin: 24px 0; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+figure img { width: 100%; height: auto; display: block; }
+figcaption { color: #5f5852; font-size: 14px; padding: 8px 6px 2px; }
+.findings { padding-left: 0; list-style: none; margin: 0; }
+.findings li { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+               border-radius: 10px; padding: 14px 18px; margin: 12px 0; }
+.findings b { display: block; margin-bottom: 2px; }
+.steps { counter-reset: s; list-style: none; padding: 0; }
+.steps li { counter-increment: s; position: relative; padding: 0 0 14px 44px; }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%;
+                    background: var(--accent); color: #fff; font-weight: 600; font-size: 14px; display: grid; place-items: center; }
+.nbs { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.nbs li { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
+.nbs a { text-decoration: none; color: var(--ink); font-weight: 600; display: flex; gap: 12px; align-items: baseline; }
+.nbs a:hover .nbtitle { color: var(--accent); text-decoration: underline; }
+.nbs .num { font-family: Fraunces, Georgia, serif; color: var(--accent); min-width: 24px; }
+.nbs .blurb { display: block; color: var(--muted); font-size: 15px; margin-left: 36px; }
+.tag { font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--warn-bg); color: var(--warn); margin-left: 8px; }
+.note { color: var(--muted); font-size: 15.5px; }
+footer { margin: 64px 0 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14.5px; }
+@media (max-width: 560px) { body { font-size: 16px; } .stat .v { font-size: 34px; } .nbs .blurb { margin-left: 0; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">Data science project · GIS and supply chain · Ecuador grocery data, 2015 to 2017</div>
+  <h1>How much bread should each warehouse stock?</h1>
+  <p class="lede">A stocking model for perishable groceries. Too little stock means empty shelves; too much means waste.
+  This project forecasts daily bread and bakery demand for four assumed regional warehouses serving
+  ${stores_total} Corporación Favorita stores in Ecuador, and shows every step, including the options
+  that were tried and rejected, in notebooks.</p>
+  <div class="status">${status_line}</div>
+  <div class="links">
+    <a class="btn primary" href="#findings">Key findings</a>
+    <a class="btn" href="#notebooks">Read the analysis</a>
+    <a class="btn" href="https://github.com/schirko/gis-supply-chain-perishable">View code on GitHub</a>
+  </div>
+</header>
+
+<section class="stats" aria-label="Headline numbers">
+  <div class="stat"><div class="v">${wape_model}%</div><div class="l">Average miss of the model's daily forecast on ${test_days} days it never saw (lower is better)</div></div>
+  <div class="stat"><div class="v">−${improvement}%</div><div class="l">Less error than the best simple rule (${wape_median8}% miss), on the same days</div></div>
+  <div class="stat"><div class="v">${stores_total}</div><div class="l">Stores grouped into ${warehouse_count} warehouse regions: ${warehouse_list}</div></div>
+  <div class="stat"><div class="v">${n_days}</div><div class="l">Days of history, ${date_first} to ${date_last}</div></div>
+</section>
+
+<figure>
+  <img src="images/demand.png" alt="Weekly average bread and bakery units sold per open store, for each of the four warehouse regions, with the training, validation and test periods shaded.">
+  <figcaption>Bread and bakery units per open store, weekly average, by warehouse region. The model learns from the white
+  area, is tuned on the first shaded block and is scored once on the last.</figcaption>
+</figure>
+
+<h2 id="findings">Key findings</h2>
+<ul class="findings">
+  <li><b>Demand follows a weekly rhythm.</b> The day of the week and the last four weeks' average matter more than anything else the model was given.
+  Even the simple rules (repeat last week, or take the median of recent weeks) miss by only ${wape_median8}% to ${wape_naive}% on the test days, which is the bar the model had to beat.</li>
+  <li><b>Gradient boosting beats the simple rules by about ${improvement}%.</b> Scored once on the last ${test_days} days of the data
+  (${test_window}), it misses by ${wape_model}% on average. The error is measured as total absolute miss divided by total units sold (WAPE).</li>
+  <li><b>It leans slightly high, not low.</b> Over the test days the forecasts total ${bias}% more than what sold, a small tilt toward overstock.
+  The median-of-recent-weeks rule leans further high (+${bias_median8}%), the seasonal-naive rule +${bias_naive}%.</li>
+  <li><b>Smaller regions are harder to forecast.</b> Misses by warehouse: ${wape_by_wh}. Fewer stores means more noise.</li>
+</ul>
+
+<figure>
+  <img src="images/error.png" alt="Bar chart of the test-period forecast error: seasonal naive ${wape_naive} percent, median of recent weeks ${wape_median8} percent, gradient boosting ${wape_model} percent.">
+  <figcaption>Forecast error on the ${test_days} test days (lower is better).</figcaption>
+</figure>
+
+<h2>How it was done</h2>
+<ol class="steps">
+  <li><b>Audited the data.</b> Checked the Kaggle store-sales files for gaps, zero-sales days and what a sale actually represents.</li>
+  <li><b>Put the stores on a map.</b> Looked up each store city, checked every point against its province, fixed the ones that were wrong, and grouped stores into four assumed warehouse regions.</li>
+  <li><b>Chose one product family.</b> Compared the perishable families by how often a warehouse sells nothing, and picked bread and bakery.</li>
+  <li><b>Forecast it.</b> Split the history by time (never shuffled), set simple baselines first, tried a linear model and two gradient boosting versions, picked the winner on validation, and scored the test period one time.</li>
+</ol>
+<p class="note"><b>Limits.</b> The warehouse sites are assumed, not Favorita's real network. Sales are not true demand, because a sold-out shelf hides what customers wanted.
+Forecasts are one day ahead and use actual sales from the previous days. The test weeks do not include Mother's Day or May 1 (the two hardest days to forecast in validation) or the year-end season.
+No forecast ranges yet. The stocking recommendation and the interactive app are the next milestones.</p>
+
+<h2 id="notebooks">The analysis, step by step</h2>
+<p class="note">Each notebook explains what it is looking for, shows the code and its result, then how to read it and what it means.</p>
+<ul class="nbs">
+${notebook_items}
+</ul>
+
+<h2>More</h2>
+<p>${doc_links}</p>
+<p class="note">The code (Python, notebooks and data-preparation steps) is on
+<a href="https://github.com/schirko/gis-supply-chain-perishable">GitHub</a>. The data is the public Kaggle
+<em>Store Sales – Time Series Forecasting</em> dataset (Corporación Favorita); it is not redistributed here.</p>
+
+<footer>
+  <a href="../../">Scott Schirkofsky</a> · Page built ${built_on}
+</footer>
+
+</div>
+</body>
+</html>

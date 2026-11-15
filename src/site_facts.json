@@ -1,0 +1,24 @@
+{
+  "_note": "Headline numbers shown on the public front page. Source: docs/decision_log.md entry 10 and notebooks/04_forecast_bread.ipynb (test split scored once). Update this file when the forecast results change, then rebuild the site.",
+  "test_window": "2017-06-21 to 2017-08-15",
+  "test_days": 56,
+  "wape_seasonal_naive": 7.8,
+  "wape_median8": 6.92,
+  "wape_model": 3.74,
+  "wape_by_warehouse": {
+    "Quito": 3.02,
+    "Guayaquil": 4.16,
+    "Cuenca": 5.02,
+    "Santo Domingo": 5.72
+  },
+  "stores_by_warehouse": {
+    "Quito": 25,
+    "Guayaquil": 16,
+    "Cuenca": 7,
+    "Santo Domingo": 6
+  },
+  "status_line": "In progress: the forecast is built and scored; stocking recommendations and the app come next.",
+  "bias_model_pct": 0.49,
+  "bias_median8_pct": 1.77,
+  "bias_naive_pct": 0.91
+}

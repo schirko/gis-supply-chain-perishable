@@ -9,3 +9,5 @@ data/processed/*
 !data/processed/.gitkeep
 data/external/*
 !data/external/README.md
+.env
+site/
