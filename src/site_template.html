@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Perishable Inventory Optimizer</title>
-<meta name="description" content="How much bread should each regional warehouse stock? A forecast for Ecuador's Favorita grocery stores, built step by step in notebooks.">
+<meta name="description" content="How much perishable stock should each regional warehouse hold? A bread and bakery demand forecast for Ecuador's Favorita grocery stores, built step by step in notebooks.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -72,11 +72,11 @@ footer { margin: 64px 0 40px; padding-top: 20px; border-top: 1px solid var(--lin
 
 <header>
   <div class="kicker">Data science project · GIS and supply chain · Ecuador grocery data, 2015 to 2017</div>
-  <h1>How much bread should each warehouse stock?</h1>
+  <h1>How much perishable stock should each warehouse hold?</h1>
   <p class="lede">A stocking model for perishable groceries. Too little stock means empty shelves; too much means waste.
-  This project forecasts daily bread and bakery demand for four assumed regional warehouses serving
-  ${stores_total} Corporación Favorita stores in Ecuador, and shows every step, including the options
-  that were tried and rejected, in notebooks.</p>
+  The first product built is bread and bakery:
+  a daily demand forecast for four assumed regional warehouses serving ${stores_total} Corporación Favorita
+  stores in Ecuador. Every step, including the options that were tried and rejected, is shown in notebooks.</p>
   <div class="status">${status_line}</div>
   <div class="links">
     <a class="btn primary" href="#findings">Key findings</a>
@@ -86,7 +86,7 @@ footer { margin: 64px 0 40px; padding-top: 20px; border-top: 1px solid var(--lin
 </header>
 
 <section class="stats" aria-label="Headline numbers">
-  <div class="stat"><div class="v">${wape_model}%</div><div class="l">Average miss of the model's daily forecast on ${test_days} days it never saw (lower is better)</div></div>
+  <div class="stat"><div class="v">${wape_model}%</div><div class="l">Average miss of the bread and bakery forecast on ${test_days} days it never saw (lower is better)</div></div>
   <div class="stat"><div class="v">−${improvement}%</div><div class="l">Less error than the best simple rule (${wape_median8}% miss), on the same days</div></div>
   <div class="stat"><div class="v">${stores_total}</div><div class="l">Stores grouped into ${warehouse_count} warehouse regions: ${warehouse_list}</div></div>
   <div class="stat"><div class="v">${n_days}</div><div class="l">Days of history, ${date_first} to ${date_last}</div></div>
@@ -111,19 +111,19 @@ footer { margin: 64px 0 40px; padding-top: 20px; border-top: 1px solid var(--lin
 
 <figure>
   <img src="images/error.png" alt="Bar chart of the test-period forecast error: seasonal naive ${wape_naive} percent, median of recent weeks ${wape_median8} percent, gradient boosting ${wape_model} percent.">
-  <figcaption>Forecast error on the ${test_days} test days (lower is better).</figcaption>
+  <figcaption>Bread and bakery forecast error on the ${test_days} test days (lower is better).</figcaption>
 </figure>
 
 <h2>How it was done</h2>
 <ol class="steps">
   <li><b>Audited the data.</b> Checked the Kaggle store-sales files for gaps, zero-sales days and what a sale actually represents.</li>
   <li><b>Put the stores on a map.</b> Looked up each store city, checked every point against its province, fixed the ones that were wrong, and grouped stores into four assumed warehouse regions.</li>
-  <li><b>Chose one product family.</b> Compared the perishable families by how often a warehouse sells nothing, and picked bread and bakery.</li>
+  <li><b>Chose the first product family.</b> Compared the perishable families by how often a warehouse sells nothing, and picked bread and bakery to build first.</li>
   <li><b>Forecast it.</b> Split the history by time (never shuffled), set simple baselines first, tried a linear model and two gradient boosting versions, picked the winner on validation, and scored the test period one time.</li>
 </ol>
 <p class="note"><b>Limits.</b> The warehouse sites are assumed, not Favorita's real network. Sales are not true demand, because a sold-out shelf hides what customers wanted.
 Forecasts are one day ahead and use actual sales from the previous days. The test weeks do not include Mother's Day or May 1 (the two hardest days to forecast in validation) or the year-end season.
-No forecast ranges yet. The stocking recommendation and the interactive app are the next milestones.</p>
+Only bread and bakery is covered so far; the other perishable families are not yet forecast. No forecast ranges yet. The stocking recommendation and the interactive app are the next milestones.</p>
 
 <h2 id="notebooks">The analysis, step by step</h2>
 <p class="note">Each notebook explains what it is looking for, shows the code and its result, then how to read it and what it means.</p>
