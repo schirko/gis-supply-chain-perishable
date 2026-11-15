@@ -65,23 +65,24 @@ def site_dir() -> Path:
     return Path(raw) if raw else ROOT / "site"
 
 
-def backbar(depth: int) -> str:
-    up = "../" * depth
-    return (
-        '<div style="font:14px/1.4 Inter,system-ui,sans-serif;padding:10px 20px;background:#E3F0E8;'
-        'border-bottom:1px solid #CFCCC2;color:#1F5A3D">'
-        f'<a href="{up}" style="color:#1F5A3D;font-weight:600;text-decoration:none">&larr; {PROJECT_NAME}</a>'
-        f' &middot; <a href="{up}../../" style="color:#1F5A3D;text-decoration:none">Scott Schirkofsky</a></div>'
-    )
-
-
+BACKBAR_LINK = '<link rel="stylesheet" href="/scott/backbar.css">'
+BACKBAR = """<div class="sx-backbar">
+  <a class="sx-back" href="/scott/">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+    Portfolio
+  </a>
+  <span class="sx-crumb">Perishable Inventory Optimizer</span>
+  <span class="sx-links"><a href="/scott/gis-supply-chain/perishable/">Project page</a><a href="/scott/gis-supply-chain/perishable/#notebooks">Notebooks</a><a href="/scott/gis-supply-chain/perishable/docs/DECISIONS.html">Docs</a></span>
+</div>"""
+# The portfolio owns /scott/backbar.css and the .sx- classes: link to it, do not copy or restyle it.
 NOINDEX = '<meta name="robots" content="noindex, nofollow">'
 
 
 def decorate(page: str, depth: int, banner: str = "") -> str:
-    if "name=\"robots\"" not in page:
-        page = re.sub(r"<head[^>]*>", lambda m: m.group(0) + NOINDEX, page, count=1, flags=re.I)
-    return re.sub(r"<body[^>]*>", lambda m: m.group(0) + backbar(depth) + banner, page, count=1, flags=re.I)
+    """Add noindex, the shared portfolio back-bar stylesheet and the back bar. (depth is kept for callers; the bar uses absolute /scott/ paths.)"""
+    head_add = (NOINDEX if 'name="robots"' not in page else "") + BACKBAR_LINK
+    page = re.sub(r"<head[^>]*>", lambda m: m.group(0) + head_add, page, count=1, flags=re.I)
+    return re.sub(r"<body[^>]*>", lambda m: m.group(0) + BACKBAR + banner, page, count=1, flags=re.I)
 
 
 # ---------------------------------------------------------------- charts
