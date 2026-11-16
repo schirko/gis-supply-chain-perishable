@@ -76,3 +76,8 @@ What was chosen, what was rejected, and why. Newest entries at the bottom. Each 
 - **Limit:** the headline test numbers are typed into `src/site_facts.json` (from entry 10), not recomputed, because the test predictions are produced inside notebook 04. Update that file if the forecast changes.
 - **Repo stays public:** the front page and the portfolio card both keep a "View code on GitHub" link.
 
+## 12. This project never writes the portfolio's index.html (standing rule, 2026-11-16)
+- **Rule:** this project owns only `scott/gis-supply-chain/perishable/` and its card screenshot in `scott/images/screenshots/`. The portfolio project owns `scott/index.html`, `styles.css` and `backbar.css`. If the portfolio card needs a change, we give the portfolio project the new text and it makes the edit.
+- **What the build does:** every file `python -m src.build_site` writes or deletes is inside `SITE_DIR`. It never touches `scott/index.html`, so no build step had to be removed.
+- **Safeguard added:** the build refuses to run if `SITE_DIR` looks like the portfolio root (a folder named `scott`, or one that contains `styles.css` or `backbar.css`), so a wrong `.env` cannot overwrite or clean it.
+- **History:** before this rule, on 2026-11-15, the card text and a change-log row in the portfolio's development guide were edited from this project. That will not happen again.

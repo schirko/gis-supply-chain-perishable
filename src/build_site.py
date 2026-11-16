@@ -270,6 +270,12 @@ def main() -> int:
 
     load_env()
     out = site_dir()
+    # Standing rule: this project writes ONLY its own folder (scott/gis-supply-chain/perishable/) and never the
+    # portfolio's scott/index.html or styles.css, which the portfolio project owns. Refuse a SITE_DIR that looks like
+    # the portfolio root so a wrong .env cannot overwrite or clean it.
+    if out.name.lower() == "scott" or (out / "styles.css").exists() or (out / "backbar.css").exists():
+        print(f"Refusing to build into {out}: it looks like the portfolio root. Use the project folder (see .env.example).")
+        return 1
     out.mkdir(parents=True, exist_ok=True)
     for name in GENERATED:  # clean only what this script generates
         target = out / name
