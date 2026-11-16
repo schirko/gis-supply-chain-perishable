@@ -49,6 +49,14 @@ Mean units per open store per day: train 481, validation 499, test 490. Warehous
 - 8-week test window gives a score that can shift a few percent with a different cut.
 - bread_daily.csv must not be committed to GitHub (add to .gitignore if not already covered).
 
+## Findings from reading the saved results together (2026-11-15)
+- **Table (4a):** 3,815 rows; 9 January-1 warehouse-days dropped (Cuenca, Quito, Santo Domingo; Guayaquil was open); Dec 25 is absent from the source for all warehouses.
+- **Split (4b):** train 844 days, validation 56, test 56, no overlap; 3,367 + 224 + 224 = 3,815.
+- **Chart (4c, read from the screenshot):** Quito highest, Santo Domingo lowest, Guayaquil and Cuenca in between; a weekly zigzag in every line; no strong trend from 2015 to mid-2017. Validation and test look like train. The "validation" and "test" band labels overlap at the right edge (cosmetic).
+- **Checks (4d):** 0 unexpected gaps; one national day off in the test window (2017-08-11); no Jan 1, Mother's Day or May 1 in the test window; open stores constant in validation and test.
+- **Conclusion for Step 4:** the data are complete and the split is fair, but the test window is a mid-year window, so its score will not speak for December or other holiday peaks.
+- **Run state:** cells 6a to 6e ran without errors after scikit-learn was installed; 6f, 6g and 7a to 7c had not been run when Step 4 was read.
+
 ---
 
 # Step 5: baseline forecasts
