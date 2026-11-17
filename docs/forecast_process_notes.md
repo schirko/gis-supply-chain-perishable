@@ -302,3 +302,24 @@ What the model learned, in words: (1) the 28-day average sets the level (mean28 
 2. Turn the point forecast into a range (for example from past errors by weekday), because the stocking decision is about the risk of waste versus stockouts, not the average.
 3. Check whether on_promotion is known a day ahead; if so, test it as a feature.
 4. Compare with the simple baseline forecasts (step 5b) on the same scoring function before presenting the result.
+
+## Findings from reading the saved results together, Step 5 (2026-11-16)
+- **5a:** 958 calendar days; 14 gap-days filled by the same-weekday-last-week rule (Jan 1 closures 2016 and 2017, Dec 25 2015 and 2016), 0 gaps left after the first 7 days.
+- **5c (validation):** median8 8.49%, mean8 8.50%, median4 8.52%, mean4 8.96%, mean4_level 10.02%, mean8_level 10.43%, seasonal naive 12.07%, naive 18.43%. The top three are a near-tie; the level adjustment hurt. median8 wins Cuenca and Quito, mean8 wins Guayaquil and Santo Domingo. median8 leans low on validation in Guayaquil (-6.01%) and Santo Domingo (-6.54%).
+- **5d:** median8 chosen by the rule fixed in advance; 29.7% better than seasonal naive on validation, and better in all four warehouses.
+- **5e (test, scored once):** median8 6.92% (MAE 510.8, bias +1.77%); seasonal naive 7.80% (MAE 575.3, bias +0.91%). By warehouse (median8 / seasonal naive): Cuenca 6.72 / 7.35, Guayaquil 6.84 / 9.42, Quito 7.12 / 7.16, Santo Domingo 5.96 / 7.36.
+- **Bias is not stable between windows:** Quito +0.29% (validation) to +4.47% (test); Guayaquil -6.01% to -2.91%. Quito's median8 advantage over seasonal naive on test is only 0.04 points.
+- **5f (chart, read from the screenshot):** the forecast follows the weekly rhythm in all four warehouses, tends to overshoot the highest peaks, and misses more from the 11 Aug national day off onward.
+- **Conclusion for Step 5:** the bar to beat is 6.92% WAPE on test. A baseline cannot react to a holiday or a level change.
+
+## Findings from reading the saved results together, Steps 6 and 7 (2026-11-16)
+- **6a/6b:** 65 national days off and 40 extra holiday-season days flagged; 14 missing days filled; 112 early rows dropped, 3,703 remain.
+- **6c/6d (validation, 36 settings):** ridge 7.99%, plain boosting 6.63%, scale-free boosting 5.88% (chosen: learning rate 0.1, 16 leaf nodes, 300 rounds). The winner is best in every warehouse except Cuenca, where plain boosting is slightly better (6.29% vs 6.41%). Winner by warehouse: Cuenca 6.41, Guayaquil 7.09, Quito 5.21, Santo Domingo 6.15. Best settings sit at the edge of the grid.
+- **6e (test, scored once, refit on train + validation):** WAPE 3.74%, MAE 276 units, bias +0.49%. Quito 3.02, Guayaquil 4.16, Cuenca 5.02, Santo Domingo 5.72. Saved to results_c.csv.
+- **6f (permutation importance, validation):** mean28 +11.8 WAPE points, weekday +6.5, lag1 +3.1, same_wd4 +2.3, day_of_month +2.0, warehouse +0.7, is_holiday +0.6, mean7 +0.6, lag14 +0.6, month +0.5, lag28 +0.5, lag7 +0.5, lag21 +0.4, holiday_tomorrow +0.3, extra_day +0.08.
+- **6g (chart):** the forecast tracks the actual weekly shape and level closely; some overshoots (Santo Domingo around Jul 9, Quito around Aug 6); slightly larger misses in the last week.
+- **7a (test):** seasonal naive 7.80% / MAE 575 / bias +0.91; median8 6.92% / 511 / +1.77; model 3.74% / 276 / +0.49. The model has 46% less error than the best simple rule on test (about 31% on validation).
+- **7b (test WAPE by warehouse, naive / median8 / model):** Cuenca 7.35 / 6.72 / 5.02; Guayaquil 9.42 / 6.84 / 4.16; Quito 7.16 / 7.12 / 3.02; Santo Domingo 7.36 / 5.96 / 5.72. Smallest gain in Santo Domingo.
+- **7c (test WAPE by weekday, naive / median8 / model):** Mon 6.36 / 5.30 / 3.20; Tue 11.29 / 7.23 / 3.99; Wed 7.20 / 5.79 / 2.58; Thu 5.05 / 4.08 / 2.66; Fri 4.91 / 5.48 / 4.07; Sat 9.40 / 9.76 / 5.08; Sun 9.22 / 9.11 / 4.10. The model wins every weekday.
+- **Milestone 3 conclusion:** 3.74% WAPE on the test weeks; fair range for the gain over the best simple rule is 31% (validation) to 46% (test). Limits: one-day-ahead with actual earlier days; mid-year 56-day test window (no Mother's Day, May 1 or year-end); 2.6 years of history; settings at the grid edge; sales are not demand; assumed warehouses; no forecast ranges. Next: Milestone 4 (forecast ranges from past errors by weekday, then a stocking rule that weighs waste against stockouts).
+
