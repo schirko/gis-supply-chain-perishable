@@ -13,7 +13,7 @@ What it does
   5. Adds a "<- Perishable Inventory Optimizer" back bar and a noindex meta tag to every page.
 
 Where it writes: SITE_DIR from .env (the portfolio folder, e.g.
-B:\\_Dev\\Python\\Schirko\\scott\\gis-supply-chain\\perishable). Without it, the git-ignored site/ folder.
+B:\\Development\\Python\\Schirko\\scott\\gis-supply-chain\\perishable). Without it, the git-ignored site/ folder.
 Before building: Run All in each notebook and save (Ctrl+S), so the outputs are in the file.
 """
 from __future__ import annotations
