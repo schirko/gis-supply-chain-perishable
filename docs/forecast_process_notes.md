@@ -323,3 +323,11 @@ What the model learned, in words: (1) the 28-day average sets the level (mean28 
 - **7c (test WAPE by weekday, naive / median8 / model):** Mon 6.36 / 5.30 / 3.20; Tue 11.29 / 7.23 / 3.99; Wed 7.20 / 5.79 / 2.58; Thu 5.05 / 4.08 / 2.66; Fri 4.91 / 5.48 / 4.07; Sat 9.40 / 9.76 / 5.08; Sun 9.22 / 9.11 / 4.10. The model wins every weekday.
 - **Milestone 3 conclusion:** 3.74% WAPE on the test weeks; fair range for the gain over the best simple rule is 31% (validation) to 46% (test). Limits: one-day-ahead with actual earlier days; mid-year 56-day test window (no Mother's Day, May 1 or year-end); 2.6 years of history; settings at the grid edge; sales are not demand; assumed warehouses; no forecast ranges. Next: Milestone 4 (forecast ranges from past errors by weekday, then a stocking rule that weighs waste against stockouts).
 
+## Step 8: Forecast ranges (notebook 05, Milestone 4 step 1)
+- **8a (validation ratios, actual ÷ forecast):** median 0.998, mean 1.001, std 0.078, min 0.775, max 1.295. Percentiles 5/10/25/50/75/90/95%: 0.873, 0.899, 0.957, 0.998, 1.051, 1.095, 1.112.
+- **8b (grouping, calibrate on first 28 validation days, check last 28; target 80%):** pooled 0.750 (width 0.182), by warehouse 0.786 (0.180), by weekday 0.714 (0.174), warehouse × weekday 0.571 (0.128).
+- **8c (range size, pooled / by warehouse):** 50% asked → 0.562 / 0.571; 80% → 0.750 / 0.786; 90% → 0.920 / 0.875.
+- **8d (test, pooled ratios from all validation days):** 50% range 62.5% inside; 80% range 90.6% inside (5.4% below, 4.0% above, width 0.196); 90% range 96.9% inside (0.9% below, 2.2% above, width 0.239). By warehouse, 80% range: Cuenca 89.3%, Guayaquil 92.9%, Quito 96.4%, Santo Domingo 83.9%.
+- **Reading:** ranges are cautious because test weeks were easier (WAPE 3.74%) than validation (5.88%); small warehouses are tighter than ideal. Pooled chosen for simplicity and data volume.
+- **Chart (Quito, test):** almost all days inside the 80% band; misses at weekend peaks (for example around Jun 24).
+- **Next:** stocking rule (Milestone 4, step 2) with an agreed waste-versus-stockout cost ratio.

@@ -81,3 +81,11 @@ What was chosen, what was rejected, and why. Newest entries at the bottom. Each 
 - **What the build does:** every file `python -m src.build_site` writes or deletes is inside `SITE_DIR`. It never touches `scott/index.html`, so no build step had to be removed.
 - **Safeguard added:** the build refuses to run if `SITE_DIR` looks like the portfolio root (a folder named `scott`, or one that contains `styles.css` or `backbar.css`), so a wrong `.env` cannot overwrite or clean it.
 - **History:** before this rule, on 2026-11-15, the card text and a change-log row in the portfolio's development guide were edited from this project. That will not happen again.
+
+## 13. Forecast range: pooled ratios from validation errors (Milestone 4, step 1, 2026-11-23)
+- **Chosen:** for each day, ratio = actual ÷ forecast from the chosen model's validation days (224 rows, 4 warehouses × 56 days). The 10th and 90th percentile ratios (0.899 and 1.095) multiplied by a new forecast give an 80% range. One pooled set for all warehouses; saved in `data/processed/ratio_percentiles.csv`.
+- **Options tried (learned on the first 28 validation days, checked on the last 28, target 80%):** pooled 75.0% inside, by warehouse 78.6%, by weekday 71.4%, warehouse × weekday 57.1% (only 8 days per group). Pooled vs by warehouse could not be separated with 112 days checked.
+- **Why pooled:** the simplest option that held up, with the most data behind each percentile.
+- **Test result (scored once, ratios from all validation days):** the 80% range held 90.6% of test days (5.4% below, 4.0% above, average width 19.6% of forecast); 90% range 96.9%; 50% range 62.5%. By warehouse (80% range): Quito 96.4%, Guayaquil 92.9%, Cuenca 89.3%, Santo Domingo 83.9%.
+- **Limits:** the test weeks were easier than the validation weeks, so the ranges are cautious; the pooled range is tight for small warehouses; one-day-ahead with actual lags; no Mother's Day, May 1 or year-end in the test window.
+- **Next:** the stocking rule needs an assumed cost of a stockout versus a unit of waste, since the data has no prices or margins.
